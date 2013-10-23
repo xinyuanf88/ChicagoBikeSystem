@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>img{ height: 100px; float: left; }</style>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+</head>
+    <body>
+
+
+<script>
+$.getJSON("https://www.googleapis.com/freebase/v1/text/en/bob_dylan", function (data) {
+    $.each(data.response.venue.tips.groups, function (index, value) {
+        $.each(this.items, function () {
+            console.log(this.text);
+        });
+    });
+});
+    </script>
+    </body>
+</html>

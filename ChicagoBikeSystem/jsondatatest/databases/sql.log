@@ -1,0 +1,225 @@
+timestamp: 2013-10-08T16:52:43.131000
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2013-10-08T16:52:43.354000
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2013-10-08T16:52:43.513000
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-10-08T16:52:43.621000
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2013-10-08T16:52:43.770000
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2013-10-08T16:52:43.902000
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2013-10-16T21:41:40.952000
+CREATE TABLE point(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    latitude DOUBLE,
+    longitude DOUBLE
+);
+success!
+timestamp: 2013-10-17T11:36:59.581000
+ALTER TABLE point ADD pointid CHAR(512) UNIQUE;
+timestamp: 2013-10-17T11:39:23.398000
+ALTER TABLE point ADD pointid CHAR(512) UNIQUE;
+success!
+timestamp: 2013-10-17T11:45:03.730000
+CREATE TABLE station(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    stationName CHAR(512),
+    pointID INTEGER REFERENCES point (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-10-17T12:45:54.929000
+ALTER TABLE point ADD stationname CHAR(512);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2013-10-22T12:10:52.182000
+ALTER TABLE point ADD availabledocks INTEGER;
+timestamp: 2013-10-22T12:10:52.345000
+ALTER TABLE point ADD totaldocks INTEGER;
+timestamp: 2013-10-22T12:10:52.749000
+ALTER TABLE point ADD statusvalue CHAR(512);
+timestamp: 2013-10-22T12:10:52.907000
+ALTER TABLE point ADD stationlocation CHAR(512);
+timestamp: 2013-10-22T12:10:53.045000
+ALTER TABLE point ADD statuskey INTEGER;
+timestamp: 2013-10-22T12:10:53.184000
+ALTER TABLE point ADD availablebikes INTEGER;
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!

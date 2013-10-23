@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body, #map-canvas {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATKOjeiKGtgW0LD0KZjb8x7_BZpkA3pWM&sensor=true">
+    </script>
+    <script type="text/javascript">
+var map;
+function initialize() {
+  var myLatlng = new google.maps.LatLng(41.881, -87.628);
+  var mapOptions = {
+    zoom: 14,
+    center: myLatlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+  var infoWindow = new google.maps.InfoWindow;
+    
+  {{for point in points:}}
+    var point = new google.maps.LatLng({{=point.latitude}}, {{=point.longitude}});
+    var station = "{{=point.stationName}}";
+    var availableBikes = {{=point.availableBikes}};
+   var availableDocks = {{=point.availableDocks}};
+    var html = " {{=B(T('Station Name'))}}: " + station + "<br />{{=B(T('Available Bikes'))}}:" + availableBikes +"<br />{{=B(T('Available Docks'))}}:" + availableDocks;
+    var marker = new google.maps.Marker({
+    position: point,
+      map: map,
+        title: station
+});
+    bindInfoWindow(marker,map,infoWindow,html);
+    {{pass}}
+  
+}
+
+   function bindInfoWindow(marker, map, infoWindow,html) {
+      google.maps.event.addListener(marker, 'click', function() {
+        infoWindow.setContent(html);
+        infoWindow.open(map, marker);
+      });
+    }
+   
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+  </body>
+</html>
